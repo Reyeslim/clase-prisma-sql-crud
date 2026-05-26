@@ -149,7 +149,7 @@ NODE_ENV=development
 
 ## Bloque 3 · Definir el Modelo en `schema.prisma` (10 min)
 
-Abre `prisma/schema.prisma` y explica que los **modelos** de Prisma representan las **tablas** que creamos en Supabase:
+Abre `prisma/schema.prisma`. Los **modelos** de Prisma representan las **tablas** que creamos en Supabase:
 
 ```prisma
 model Movie {
@@ -164,7 +164,7 @@ model Movie {
 }
 ```
 
-**Puntos a explicar:**
+**Puntos importantes:**
 
 | Elemento                    | Qué significa                                                                           |
 | :-------------------------- | :-------------------------------------------------------------------------------------- |
