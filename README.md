@@ -184,6 +184,20 @@ Esto genera el código necesario para hacer consultas desde Node.js.
 
 > **Tip:** Cada vez que modifiques `schema.prisma`, debes ejecutar `npx prisma generate` de nuevo.
 
+### Paso 5: Crear src/lib/prisma.js
+
+Creamos el archivo `prisma.js` dentro de la carpeta `lib` y añadimos:
+
+```js
+import { PrismaClient } from "@prisma/client" // Es la herramienta principal de Prisma para hacer peticiones
+import { PrismaPg } from "@prisma/adapter-pg" // adaptador de prisma para postgreSQL
+
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+const prisma = new PrismaClient({ adapter })
+
+export default prisma
+```
+
 ---
 
 ## Bloque 4 · Services con Prisma (20 min)
