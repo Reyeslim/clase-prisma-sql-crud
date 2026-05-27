@@ -1,46 +1,33 @@
-import { movies } from "../db/movies.js"
+// import { movies } from "../db/movies.js"
+import prisma from "../lib/prisma.js"
 
 const getAllMovies = () => {
-  return movies
+  return prisma.movie.findMany({
+    orderBy: { id: "asc" },
+  })
 }
 
 const getMovieById = (id) => {
-  return movies.find((movie) => movie.id === id)
+  return prisma.movie.findUnique({
+    where: { id },
+  })
 }
 
 const createMovie = (data) => {
-  const newMovie = {
-    id: Date.now(),
-    ...data,
-  }
-  movies.push(newMovie)
-  return newMovie
+  return prisma.movie.create({ data })
 }
 
 const updateMovie = (id, data) => {
-  const movieIndex = movies.findIndex((movie) => movie.id === id)
-
-  if (movieIndex === -1) {
-    return null
-  }
-
-  movies[movieIndex] = {
-    ...movies[movieIndex],
-    ...data,
-  }
-
-  return movies[movieIndex]
+  return prisma.movie.update({
+    where: { id },
+    data,
+  })
 }
 
 const deleteMovie = (id) => {
-  const movieIndex = movies.findIndex((movie) => movie.id === id)
-
-  if (movieIndex === -1) {
-    return false
-  }
-
-  movies.splice(movieIndex, 1)
-  return true
+  return prisma.movie.delete({
+    where: { id },
+  })
 }
 
 export const moviesService = {
